@@ -184,12 +184,41 @@
         .envelope-container {
             position: relative;
             width: 300px;
+            max-width: 85vw;
+            /* Mobile responsive */
             height: 200px;
             cursor: pointer;
             margin: 0 auto;
             transition: transform 0.3s;
             z-index: 30;
             /* Above background */
+        }
+
+        /* ... existing hover styles ... */
+
+        /* Open State */
+        .envelope-container.open .envelope-flap {
+            transform: rotateX(180deg);
+            z-index: 0;
+        }
+
+        .envelope-container.open .wax-seal {
+            transform: translateX(-50%) rotateX(180deg);
+            opacity: 0;
+        }
+
+        .envelope-container.open .letter-card {
+            /* Slide up significantly and scale up */
+            transform: translateX(-50%) translateY(-250px) scale(1.5);
+            z-index: 5;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Mobile specific adjustments for open state */
+        @media (max-width: 480px) {
+            .envelope-container.open .letter-card {
+                transform: translateX(-50%) translateY(-150px) scale(1.1);
+            }
         }
 
         .envelope-container:hover {
@@ -1360,5 +1389,3 @@
 </body>
 
 </html>
-
-
